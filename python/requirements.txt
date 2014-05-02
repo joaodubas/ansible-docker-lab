@@ -1,0 +1,1 @@
+-e git://github.com/signalfuse/maestro-ng.git#egg=maestro
