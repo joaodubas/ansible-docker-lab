@@ -1,7 +1,7 @@
 # ansible
 #
 # VERSION: see `TAG`
-FROM joaodubas/ansible-common:201405.1
+FROM joaodubas/ansible-sshd:201405.1
 MAINTAINER Joao Paulo Dubas "joao.dubas@gmail.com"
 
 # install system dependencies
@@ -35,8 +35,16 @@ RUN /usr/local/bin/virtualenv $WORKON_HOME/ansible \
     && chown --recursive app:app $WORKON_HOME \
     && chown --recursive app:app $PROJECT_HOME
 
+# add docker variables to app user
+ADD dockerenv_loader /home/app/.dockerenv_loader
+ADD bash_personal /home/app/.bash_personal
+RUN chmod 644 /home/app/.dockerenv_loader \
+    && chown app:app /home/app/.dockerenv_loader \
+    && chmod 644 /home/app/.bash_personal \
+    && chown app:app /home/app/.bash_personal \
+    && echo "source /home/app/.bash_personal" >> /home/app/.bashrc
+
 # run commands
-ENV HOME /home/app
-USER app
-WORKDIR /home/app
-ENTRYPOINT ["/usr/local/bin/ansible"]
+EXPOSE 22
+ENTRYPOINT ["/usr/sbin/sshd"]
+CMD ["-D"]
