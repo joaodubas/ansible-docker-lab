@@ -1,7 +1,7 @@
 ---
 name: ansible-demo
 ships:
-    local: {ip: 127.0.0.1}
+    local: {ip: 127.0.0.1, docker_port: 2375}
 services:
     sshd:
         image: joaodubas/ansible-sshd:201405.1
