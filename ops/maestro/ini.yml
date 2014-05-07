@@ -1,0 +1,24 @@
+---
+name: ansible-demo
+ships:
+    local: {ip: 127.0.0.1}
+services:
+    sshd:
+        image: joaodubas/ansible-sshd:201405.1
+        instances:
+            sshd-api:
+                ship: local
+                ports: {sshd: "22:2223"}
+            sshd-db:
+                ship: local
+                ports: {sshd: "22:2224"}
+            sshd-front:
+                ship: local
+                ports: {sshd: "22:2225"}
+    ansible:
+        image: joaodubas/ansible-ansible:201405.1
+        requires: [ sshd ]
+        instances:
+            ansible-1:
+                ship: local
+                ports: {sshd: "22:2222"}
