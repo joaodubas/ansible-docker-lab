@@ -9,7 +9,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y -qq --force-yes update \
     && apt-get -y -qq --force-yes install \
         locales \
-        openssl
+        openssl \
+        sudo
         
 # ensure utf-8
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
@@ -24,6 +25,7 @@ RUN echo root:$UPASS | chpasswd
 # add unprivileged user
 ONBUILD ENV APPPASS 123app4
 ONBUILD RUN useradd \
+        -G sudo \
         -d /home/app \
         -m \
         -p $(openssl passwd $APPPASS) \
