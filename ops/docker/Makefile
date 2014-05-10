@@ -4,6 +4,7 @@ IMAGE = `cat $(HERE)/REPOSITORY`
 TAG = `cat $(HERE)/TAG`
 VERSION = $(IMAGE):$(TAG)
 VERSION_LATEST = $(IMAGE):latest
+HOSTNAME = local
 
 
 install_image:
@@ -27,7 +28,7 @@ run_skydns:
 		--name skydns \
 		crosbymichael/skydns \
 			-nameserver 8.8.8.8:53 \
-			-domain ansible
+			-domain $(HOSTNAME)
 
 
 run_skydock: run_skydns
@@ -39,7 +40,7 @@ run_skydock: run_skydns
 			-ttl 30 \
 			-environment dev \
 			-s /docker.sock \
-			-domain docker \
+			-domain $(HOSTNAME) \
 			-name skydns
 
 
