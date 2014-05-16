@@ -10,7 +10,10 @@ def docker_env():
 
     """
     env_keys = os.environ.keys()
-    envs = dict(v.split('=') for v in json.load(open('/.dockerenv')))
+    try:
+        envs = dict(v.split('=') for v in json.load(open('/.dockerenv')))
+    except ValueError:
+        return []
     tmpl = 'export {}={}\n'
     return (tmpl.format(k, v) for k, v in envs.iteritems() if k not in env_keys)
 
