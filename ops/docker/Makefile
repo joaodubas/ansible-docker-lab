@@ -26,7 +26,7 @@ run_skydns:
 		-d \
 		-p 172.17.42.1:53:53/udp \
 		--name skydns \
-		crosbymichael/skydns \
+		crosbymichael/skydns:next \
 			-nameserver 8.8.8.8:53 \
 			-domain $(HOSTNAME)
 
