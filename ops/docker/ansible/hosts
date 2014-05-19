@@ -1,0 +1,8 @@
+[api]
+sshd-api.ansible-sshd.dev.local
+
+[db]
+sshd-db.ansible-sshd.dev.local
+
+[front]
+sshd-front.ansible-sshd.dev.local
