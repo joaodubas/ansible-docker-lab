@@ -7,7 +7,8 @@ MAINTAINER Joao Paulo Dubas "joao.dubas@gmail.com"
 # add system deps
 RUN apt-get -y -qq --force-yes update \
     && apt-get -y -qq --force-yes install \
-        openssh-server
+        openssh-server \
+        python
 
 # prepare unprivileged user to ssh
 RUN mkdir /home/app/.ssh \

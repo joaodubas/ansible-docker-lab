@@ -1,7 +1,7 @@
 # ansible
 #
 # VERSION: see `TAG`
-FROM joaodubas/ansible-sshd:201405.1
+FROM joaodubas/ansible-sshd:201405.2
 MAINTAINER Joao Paulo Dubas "joao.dubas@gmail.com"
 
 # install system dependencies

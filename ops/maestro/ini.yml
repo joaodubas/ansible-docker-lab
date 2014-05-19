@@ -4,7 +4,7 @@ ships:
     local: {ip: 127.0.0.1, docker_port: 2375}
 services:
     sshd:
-        image: joaodubas/ansible-sshd:201405.1
+        image: joaodubas/ansible-sshd:201405.2
         instances:
             sshd-api:
                 ship: local
@@ -16,7 +16,7 @@ services:
                 ship: local
                 ports: {sshd: "22:2225"}
     ansible:
-        image: joaodubas/ansible-ansible:201405.2
+        image: joaodubas/ansible-ansible:201405.3
         requires: [ sshd ]
         instances:
             ansible-1:
