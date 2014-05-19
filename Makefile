@@ -4,10 +4,10 @@ PYTHON_REQ = $(ROOT)/python/requirements.txt
 MAESTRO_CMD = $(PYTHON_VENV)/bin/maestro -f ./ops/maestro/ini.yml
 DOCKER_ROOT = $(ROOT)/ops/docker
 IMAGE = $(DOCKER_ROOT)/$(image)
-IMAGE_REPO = `cat $(DOCKER_IMAGE)/REPOSITORY`
-IMAGE_TAG = `cat $(DOCKER_IMAGE)/TAG`
-IMAGE_VERSION = $(DOKCER_IMAGE_REPO):$(DOCKER_IMAGE_TAG)
-IMAGE_LATEST = $(DOCKER_IMAGE_REPO):latest
+IMAGE_REPO = `cat $(IMAGE)/REPOSITORY`
+IMAGE_TAG = `cat $(IMAGE)/TAG`
+IMAGE_VERSION = $(IMAGE_REPO):$(IMAGE_TAG)
+IMAGE_LATEST = $(IMAGE_REPO):latest
 DISCOVERY_NAME = skydns
 DISCOVERY_HOSTNAME = local
 
@@ -31,7 +31,8 @@ python_install:
 
 
 image_install:
-	@cd DOCKER_IMAGE \
+	@echo $(IMAGE) $(IMAGE_VERSION)
+	@cd $(IMAGE) \
 		&& docker build -t $(IMAGE_VERSION) --rm . \
 		&& docker tag $(IMAGE_VERSION) $(IMAGE_LATEST)
 
