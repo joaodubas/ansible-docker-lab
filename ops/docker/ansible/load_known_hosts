@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+
+load_known_hosts() {
+	local filename=known_hosts
+	local filepath=$HOME/.ssh/$filename
+
+    if [ -f $filepath ]; then
+       return 0
+    else
+        touch $filepath
+        ssh-keyscan -H sshd-api.ansible-sshd.dev.local >> $filepath
+        ssh-keyscan -H sshd-db.ansible-sshd.dev.local >> $filepath
+        ssh-keyscan -h sshd-front.ansible-sshd.dev.local >> $filepath
+    fi
+}
+
+
+if [ -f $HOME/firstrun ]; then
+	load_known_hosts
+	rm $HOME/firstrun
+fi
