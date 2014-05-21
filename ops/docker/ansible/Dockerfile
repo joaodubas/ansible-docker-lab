@@ -20,6 +20,11 @@ RUN pip install ansible==1.6.1
 
 # add ansible hosts
 ADD hosts /etc/ansible/hosts
+ADD load_known_hosts /home/app/.load_known_hosts
+RUN echo "source $HOME/.load_known_hosts" >> /home/app/.bashrc \
+    touch /home/app/firstrun \
+    chown app:app /home/app/.load_known_hosts \
+    chown app:app /home/app/firstrun
 
 # run commands
 EXPOSE 22

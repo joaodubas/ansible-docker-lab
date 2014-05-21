@@ -16,7 +16,7 @@ services:
                 ship: local
                 ports: {sshd: "22:2225"}
     ansible:
-        image: joaodubas/ansible-ansible:201405.3
+        image: joaodubas/ansible-ansible:201405.4
         requires: [ sshd ]
         instances:
             ansible-1:
