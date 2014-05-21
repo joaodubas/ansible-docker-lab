@@ -45,9 +45,9 @@ discovery_install:
 discovery_start_skydns:
 	@docker run \
 		-d \
-		-p 172.17.42.1.53:53/udp \
+		-p 172.17.42.1:53:53/udp \
 		--name $(DISCOVERY_NAME) \
-		crosbymichael\skydns:next \
+		crosbymichael/skydns:next \
 			-nameserver 8.8.8.8:53 \
 			-domain $(DISCOVERY_HOSTNAME) \
 
