@@ -1,0 +1,9 @@
+root = true
+
+[*]
+end_of_line = lf
+insent_final_newline = false
+
+[*.yml]
+indent_style = space
+indent_size = 2
