@@ -1,24 +1,26 @@
 ---
 name: ansible-demo
 ships:
-    local: {ip: 127.0.0.1, docker_port: 2375}
+  local: {ip: 127.0.0.1, docker_port: 2375}
 services:
-    sshd:
-        image: joaodubas/ansible-sshd:201405.2
-        instances:
-            sshd-api:
-                ship: local
-                ports: {sshd: "22:2223"}
-            sshd-db:
-                ship: local
-                ports: {sshd: "22:2224"}
-            sshd-front:
-                ship: local
-                ports: {sshd: "22:2225"}
-    ansible:
-        image: joaodubas/ansible-ansible:201405.4
-        requires: [ sshd ]
-        instances:
-            ansible-1:
-                ship: local
-                ports: {sshd: "22:2222"}
+  sshd:
+      image: joaodubas/ansible-sshd:latest
+      instances:
+        sshd-api:
+          ship: local
+          ports: {sshd: "22:2223"}
+        sshd-db:
+          ship: local
+          ports: {sshd: "22:2224"}
+        sshd-front:
+          ship: local
+          ports: {sshd: "22:2225"}
+  ansible:
+    image: joaodubas/ansible-ansible:latest
+    requires: [ sshd ]
+    instances:
+      ansible-1:
+        ship: local
+        ports: {sshd: "22:2222"}
+        volumes:
+          /opt/host: {{ env.PWD }}
