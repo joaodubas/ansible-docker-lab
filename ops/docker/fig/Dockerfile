@@ -7,7 +7,7 @@ MAINTAINER Joao Paulo Dubas "joao.dubas@gmail.com"
 # install system deps
 RUN apt-get -y -qq --force-yes update \
     && apt-get -y -qq --force-yes install curl \
-    && curl https://github.com/docker/fig/releases/download/0.5.2/linux \
+    && curl -L https://github.com/docker/fig/releases/download/0.5.2/linux \
         > /usr/local/bin/fig \
     && chmod 755 /usr/local/bin/fig \
     && apt-get -y -qq --force-yes purge curl \
@@ -16,6 +16,7 @@ RUN apt-get -y -qq --force-yes update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # configure containter
-VOLUME ['/app']
-ENTRYPOINT ['/usr/local/bin/fig']
-CMD ['--version']
+WORKDIR /app
+VOLUME ["/app"]
+ENTRYPOINT ["/usr/local/bin/fig"]
+CMD ["--version"]
