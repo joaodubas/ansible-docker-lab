@@ -1,0 +1,11 @@
+---
+- name: install libpq header
+  sudo: true
+  apt: >
+    name=libpq-dev
+    update_cache=yes
+    state=present
+  tags:
+    - database
+    - install
+    - client

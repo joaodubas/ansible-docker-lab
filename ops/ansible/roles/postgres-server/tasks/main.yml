@@ -1,0 +1,10 @@
+---
+- name: install postgres
+  sudo: true
+  apt: >
+    name=postgresql-9.3
+    update_cache=yes
+    state=present
+  tags:
+    - database
+    - install
