@@ -1,0 +1,40 @@
+---
+- name: add postgres repository
+  sudo: true
+  apt_repository: >
+    repo='deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main'
+    state=present
+  tags:
+    - database
+    - repo
+
+
+- name: enable postgres repository
+  sudo: true
+  apt_key: >
+    url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state=present
+  tags:
+    - database
+    - repo
+
+- name: install postgres
+  sudo: true
+  apt: >
+    name=postgresql-9.3
+    update_cache=yes
+    state=present
+  tags:
+    - database
+    - install
+
+- name: install libpq header
+  sudo: true
+  apt: >
+    name=libpq-dev
+    update_cache=yes
+    state=present
+  tags:
+    - database
+    - install
+    - client

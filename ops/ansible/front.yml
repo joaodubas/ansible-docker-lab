@@ -1,0 +1,7 @@
+---
+- hosts: front
+  roles: 
+    - common
+    - role: node
+      tags:
+        - repo

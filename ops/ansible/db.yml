@@ -1,0 +1,7 @@
+---
+- hosts: database
+  roles:
+    - common
+    - role: postgres
+      tags:
+        - repo
