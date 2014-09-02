@@ -2,10 +2,5 @@
 - hosts: api
   roles:
     - common
-    - role: xml
-      tags:
-        - repo
-    - role: postgres
-      tags:
-        - repo
-#         - client
+    - xml
+    - postgres-client
