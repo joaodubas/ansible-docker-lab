@@ -3,21 +3,20 @@
   sudo: true
   apt_repository: >
     repo='deb http://archive.ubuntu.com/ubuntu/ precise main universe'
-    state=presente
+    state=present
   tags:
     - system
     - repo
 
-# - name: enable gpg precise
-#   sudo: true
-#     update_cache=yes
-#   apt_key: >
-#     id=
-#     keyserver=
-#     state=present
-#   tags:
-#     - system
-#     - repo
+- name: enable gpg precise
+  sudo: true
+  apt_key: >
+    id=40976EAF437D05B5
+    keyserver=keyserver.ubuntu.com
+    state=present
+  tags:
+    - system
+    - repo
 
 - name: install xml dependencies
   sudo: true
@@ -26,8 +25,8 @@
     update_cache=yes
     state=present
   with_items:
-    - libxml2=2.7.8.dfsg-5.ubuntu4
-    - libxml2-dev=2.7.8.dfsg-5.ubuntu4
+    - libxml2=2.7.8.dfsg-5.1ubuntu4
+    - libxml2-dev=2.7.8.dfsg-5.1ubuntu4
     - libxslt1.1=1.1.26-8ubuntu1
     - libxslt1-dev=1.1.26-8ubuntu1
     - libxmlsec1
